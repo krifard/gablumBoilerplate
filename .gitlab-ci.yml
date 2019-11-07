@@ -34,8 +34,8 @@ angular-lint:
     script:
         - cd ui/src/main/resources/frontend && npm install && ./node_modules/@angular/cli/bin/ng lint
 
-# angular-test:
-#     image: node:latest
-#     stage: test
-#     script:
-#         - cd ui/src/main/resources/frontend && npm install && ./node_modules/@angular/cli/bin/ng test
+angular-test:
+    image: node:latest
+    stage: test
+    script:
+        - cd ui/src/main/resources/frontend && npm install && ./node_modules/@angular/cli/bin/ng test
