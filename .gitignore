@@ -39,3 +39,6 @@ mvnw.cmd
 # gitlab local builds
 
 builds/
+
+# angular build files
+ui/src/main/resources/public/
