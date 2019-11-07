@@ -5,11 +5,17 @@ stages:
     - test
     - lint
 
-maven-java:
+java-tests:
     image: maven:latest
     stage: test
     script:
         - mvn test
+
+java-lint:
+    image: maven:latest
+    stage: lint
+    script:
+        - mvn pmd:check
 
 angular:
     image: node:latest
