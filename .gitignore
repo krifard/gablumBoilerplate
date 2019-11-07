@@ -26,6 +26,7 @@ hs_err_pid*
 .idea/
 .vscode/
 .settings/
+.project/
 
 # build files
 
