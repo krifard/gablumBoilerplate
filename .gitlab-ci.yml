@@ -7,8 +7,8 @@ stages:
     - coverage
 
 # cache maven repo
-# variables:
-#   MAVEN_OPTS: -Dmaven.repo.local=/cache/maven.repository
+variables:
+  MAVEN_OPTS: -Dmaven.repo.local=/cache/maven.repository
 
 java-tests:
     image: maven:latest
