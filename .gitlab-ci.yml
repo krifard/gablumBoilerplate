@@ -4,6 +4,7 @@
 stages:
     - test
     - lint
+    - coverage
 
 java-tests:
     image: maven:latest
@@ -17,8 +18,20 @@ java-lint:
     script:
         - mvn pmd:check
 
-angular:
+java-coverage:
+    image: maven:latest
+    stage: coverage
+    script:
+        - mvn jacoco:prepare-agent install jacoco:report
+
+angular-lint:
     image: node:latest
     stage: lint
     script:
         - cd ui/src/main/resources/frontend && npm install && ./node_modules/@angular/cli/bin/ng lint
+
+# angular-test:
+#     image: node:latest
+#     stage: test
+#     script:
+#         - cd ui/src/main/resources/frontend && npm install && ./node_modules/@angular/cli/bin/ng test
