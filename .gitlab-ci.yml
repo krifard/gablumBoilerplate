@@ -6,11 +6,15 @@ stages:
     - lint
     - coverage
 
+# cache maven repo
+# variables:
+#   MAVEN_OPTS: -Dmaven.repo.local=/cache/maven.repository
+
 java-tests:
     image: maven:latest
     stage: test
     script:
-        - mvn test
+        - mvn test -PskipAngular
 
 java-lint:
     image: maven:latest
@@ -22,7 +26,7 @@ java-coverage:
     image: maven:latest
     stage: coverage
     script:
-        - mvn jacoco:prepare-agent install jacoco:report
+        - mvn jacoco:prepare-agent install jacoco:report -PskipAngular
 
 angular-lint:
     image: node:latest

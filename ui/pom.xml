@@ -16,7 +16,17 @@
 
 	<properties>
 		<java.version>11</java.version>
+		<skip.angular>false</skip.angular>
 	</properties>
+
+	<profiles>
+		<profile>
+			<id>skipAngular</id>
+			<properties>
+				<skip.angular>true</skip.angular>
+			</properties>
+		</profile>
+	</profiles>
 
 	<dependencies>
 		<dependency>
@@ -54,6 +64,7 @@
 					</goals>
 				</execution></executions>
 				<configuration>
+					<skip>${skip.angular}</skip>
 					<executable>ng</executable>
 					<workingDirectory>src/main/resources/frontend/</workingDirectory>
 					<arguments>
