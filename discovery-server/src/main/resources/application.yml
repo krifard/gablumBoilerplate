@@ -1,9 +1,9 @@
-eureka:
-  instance:
-    hostname: localhost
-  client:
-    registerWithEureka: false
-    fetchRegistry: false
+# eureka:
+#   instance:
+#     hostname: localhost
+#   client:
+#     registerWithEureka: false
+#     fetchRegistry: false
 
-server:
-  port: ${EUREKA_PORT}
+# server:
+#   port: ${EUREKA_PORT}
