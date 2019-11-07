@@ -1,0 +1,18 @@
+# before_script:
+#     - apt-get install maven
+
+stages:
+    - test
+    - lint
+
+maven-java:
+    image: maven:latest
+    stage: test
+    script:
+        - mvn test
+
+angular:
+    image: node:latest
+    stage: lint
+    script:
+        - cd ui/src/main/resources/frontend && npm install && ./node_modules/@angular/cli/bin/ng lint
