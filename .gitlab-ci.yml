@@ -1,4 +1,5 @@
 stages:
+    - build
     - test
     - lint
     - coverage
@@ -7,6 +8,13 @@ variables:
   MAVEN_OPTS: -Dmaven.repo.local=/cache/maven.repository  # cache maven repo
   REGISTRY_URI: http://localhost:8001
   CONFIG_URL: http://localhost:8000
+
+java-build:
+    image: maven:latest
+    stage: build
+    script:
+        - mvn package -PskipAngular && mvn prepare-agent -PskipAngular
+
 
 java-tests:
     image: maven:latest
