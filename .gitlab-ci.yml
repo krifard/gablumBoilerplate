@@ -13,7 +13,7 @@ java-build:
     image: maven:latest
     stage: build
     script:
-        - mvn package -PskipAngular && mvn prepare-agent -PskipAngular
+        - mvn package -PskipAngular && mvn jacoco:prepare-agent -PskipAngular
 
 
 java-tests:
