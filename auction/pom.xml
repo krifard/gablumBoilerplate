@@ -5,7 +5,7 @@
     <artifactId>auction</artifactId>
     <version>0.1</version>
     <packaging>pom</packaging>
-    <name>gablum</name>
+    <name>auction</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
     <properties>
@@ -62,10 +62,7 @@
     </build>
 
     <modules>
-        <module>config-server</module>
-        <module>discovery-server</module>
-        <module>gateway</module>
-        <module>ui</module>
-        <module>user-api</module>
+        <module>auctions</module>
+        <module>bid</module>
     </modules>
 </project>

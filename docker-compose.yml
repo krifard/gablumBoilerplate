@@ -10,46 +10,64 @@ services:
       - CONFIG_URL=https://github.com/tastycats/gablum-config.git
       - CONFIG_SERVER_PORT=8000
 
-  # discovery:
-  #   build:
-  #     context: ./discovery-server
-  #   environment: 
-  #     - CONFIG_SERVER=http://config-server:8000
-  #     - DISCOVERY_PORT=8001
-  #   expose: 
-  #      - 8001
-  #   ports:
-  #     - "8001:8001"
-  #   depends_on: 
-  #     - config-server
+  discovery:
+    build:
+      context: ./discovery-server
+    environment: 
+      - CONFIG_SERVER=http://config-server:8000
+      - DISCOVERY_PORT=8001
+    expose: 
+       - 8001
+    ports:
+      - "8001:8001"
+    depends_on: 
+      - config-server
   
-  # gateway:
-  #   build:
-  #     context: ./gateway
-  #   environment: 
-  #     - REGISTRY_URI=http://discovery:8001
-  #     - GATEWAY_PORT=4000
-  #   expose: 
-  #      - 4000
-  #   ports:
-  #     - "4000:4000"
-  #   depends_on: 
-  #     - discovery
+  gateway:
+    build:
+      context: ./gateway
+    environment: 
+      - REGISTRY_URI=http://discovery:8001
+      - GATEWAY_PORT=4000
+    expose: 
+       - 4000
+    ports:
+      - "4000:4000"
+    depends_on: 
+      - discovery
   
-  # user-api:
-  #   build:
-  #     context: ./user-api
-  #   environment: 
-  #     - REGISTRY_URI=http://discovery:8001
-  #     - SERVER_PORT=4000
-  #   depends_on: 
-  #     - discovery
+  user-api:
+    build:
+      context: ./user-api
+    environment: 
+      - REGISTRY_URI=http://discovery:8001
+      - SERVER_PORT=4000
+    depends_on: 
+      - discovery
   
-  # ui:
-  #   build:
-  #     context: ./ui
-  #   environment: 
-  #     - REGISTRY_URI=http://discovery:8001
-  #     - SERVER_PORT=4000
-  #   depends_on: 
-  #     - discovery
+  ui:
+    build:
+      context: ./ui
+    environment: 
+      - REGISTRY_URI=http://discovery:8001
+      - SERVER_PORT=4000
+    depends_on: 
+      - discovery
+
+  auctions:
+    build:
+      context: ./auction/auctions
+    environment: 
+      - REGISTRY_URI=http://discovery:8001
+      - SERVER_PORT=4000
+    depends_on: 
+      - discovery
+
+  bid:
+    build:
+      context: ./auction/bid
+    environment: 
+      - REGISTRY_URI=http://discovery:8001
+      - SERVER_PORT=4000
+    depends_on: 
+      - discovery
