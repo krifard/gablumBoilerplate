@@ -11,7 +11,7 @@ FROM openjdk:11
 
 COPY --from=build usr/app/target/*.jar usr/app/app.jar
 
-# EXPOSE 4000
+EXPOSE 4000
 
 ENTRYPOINT [ "java","-jar","usr/app/app.jar" ]
 # COPY "${pwd}" /gateway/

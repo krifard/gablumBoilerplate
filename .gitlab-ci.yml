@@ -1,14 +1,12 @@
-# before_script:
-#     - apt-get install maven
-
 stages:
     - test
     - lint
     - coverage
 
-# cache maven repo
 variables:
-  MAVEN_OPTS: -Dmaven.repo.local=/cache/maven.repository
+  MAVEN_OPTS: -Dmaven.repo.local=/cache/maven.repository  # cache maven repo
+  REGISTRY_URI: http://localhost:8001
+  CONFIG_URL: http://localhost:8000
 
 java-tests:
     image: maven:latest

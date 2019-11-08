@@ -12,7 +12,7 @@
 	<artifactId>ui</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>ui</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Angular UI for Gablum</description>
 
 	<properties>
 		<java.version>11</java.version>
@@ -122,5 +122,5 @@
 			<url>https://repo.spring.io/milestone</url>
 		</repository>
 	</repositories>
-	
+
 </project>
