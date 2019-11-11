@@ -31,19 +31,19 @@ java-coverage:
         - mvn jacoco:prepare-agent install jacoco:report -PskipAngular
 
 angular-build:
-    image: node:12-buster
+    image: node:12-alpine
     stage: build
     script:
-        - cd ui/src/main/resources/frontend && npm install && ./node_modules/@angular/cli/bin/ng build
+        - cd ui/src/main/resources/frontend && npm install && npm run build -- --prod
 
 angular-lint:
-    image: node:12-buster
+    image: node:12-alpine
     stage: test
     script:
-        - cd ui/src/main/resources/frontend && npm install && ./node_modules/@angular/cli/bin/ng lint
+        - cd ui/src/main/resources/frontend && npm install && npm run lint
 
 angular-tests:
     image: circleci/node:12-browsers
     stage: test
     script:
-        - cd ui/src/main/resources/frontend && npm install && ./node_modules/@angular/cli/bin/ng test
+        - cd ui/src/main/resources/frontend && npm install && npm run test
