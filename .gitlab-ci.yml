@@ -2,8 +2,8 @@ stages:
     - build
     - test
 
-variables:
-  MAVEN_OPTS: -Dmaven.repo.local=/cache/maven.repository  # cache maven repo for faster builds
+# variables:
+#   MAVEN_OPTS: -Dmaven.repo.local=/cache/maven.repository  # cache maven repo for faster builds
 
 java-build:
     image: tastycats/gablumdeps:latest
