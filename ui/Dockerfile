@@ -17,9 +17,15 @@ RUN ls /usr/app
 
 RUN mvn -f /usr/app clean package -PskipAngular
 
-FROM openjdk:11
+
+FROM gesellix/wait-for as waitfor
+
+RUN ls
+
+FROM openjdk:12-alpine
 
 COPY --from=build /usr/app/target/*.jar /usr/app/app.jar
+COPY --from=waitfor ./wait-for ./wait
 
 EXPOSE 4000
 
