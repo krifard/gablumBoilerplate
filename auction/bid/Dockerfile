@@ -1,4 +1,4 @@
-FROM cached_maven as build
+FROM tastycats/gablumdeps:latest as build
 
 COPY src /usr/app/src
 COPY pom.xml /usr/app

@@ -6,26 +6,26 @@ variables:
   MAVEN_OPTS: -Dmaven.repo.local=/cache/maven.repository  # cache maven repo for faster builds
 
 java-build:
-    image: maven:3.6.0-jdk-11
+    image: tastycats/gablumdeps:latest
     stage: build
     script:
         - mvn package -PskipAngular -DskipTests
 
 
 java-tests:
-    image: maven:3.6.0-jdk-11
+    image: tastycats/gablumdeps:latest
     stage: test
     script:
         - mvn test -PskipAngular
 
 java-lint:
-    image: maven:3.6.0-jdk-11
+    image: tastycats/gablumdeps:latest
     stage: test
     script:
         - mvn pmd:check
 
 java-coverage:
-    image: maven:3.6.0-jdk-11
+    image: tastycats/gablumdeps:latest
     stage: test
     script:
         - mvn jacoco:prepare-agent install jacoco:report -PskipAngular

@@ -9,7 +9,7 @@ WORKDIR /usr/app/src/main/resources/frontend/
 
 RUN ng build
 
-FROM cached_maven as build
+FROM tastycats/gablumdeps:latest as build
 
 COPY --from=ng_build /usr/app /usr/app
 
