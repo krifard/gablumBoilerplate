@@ -1,7 +1,6 @@
 stages:
     - build
     - test
-    - lint
     - coverage
 
 variables:
@@ -13,7 +12,7 @@ java-build:
     image: maven:latest
     stage: build
     script:
-        - mvn package -PskipAngular && mvn jacoco:prepare-agent -PskipAngular
+        - mvn package jacoco:prepare-agent -PskipAngular
 
 
 java-tests:
@@ -24,7 +23,7 @@ java-tests:
 
 java-lint:
     image: maven:latest
-    stage: lint
+    stage: test
     script:
         - mvn pmd:check
 
@@ -34,9 +33,15 @@ java-coverage:
     script:
         - mvn jacoco:prepare-agent install jacoco:report -PskipAngular
 
+angular-build:
+    image: node:13-stretch
+    stage: build
+    script:
+        - cd ui/src/main/resources/frontend && npm install && ./node_modules/@angular/cli/bin/ng build
+
 angular-lint:
-    image: node:latest
-    stage: lint
+    image: node:13-stretch
+    stage: test
     script:
         - cd ui/src/main/resources/frontend && npm install && ./node_modules/@angular/cli/bin/ng lint
 
