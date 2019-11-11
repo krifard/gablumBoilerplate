@@ -1,52 +1,49 @@
 stages:
     - build
     - test
-    - coverage
 
 variables:
-  MAVEN_OPTS: -Dmaven.repo.local=/cache/maven.repository  # cache maven repo
-  REGISTRY_URI: http://localhost:8001
-  CONFIG_URL: http://localhost:8000
+  MAVEN_OPTS: -Dmaven.repo.local=/cache/maven.repository  # cache maven repo for faster builds
 
 java-build:
-    image: maven:latest
+    image: maven:3.6.0-jdk-11
     stage: build
     script:
-        - mvn package jacoco:prepare-agent -PskipAngular
+        - mvn package -PskipAngular -DskipTests
 
 
 java-tests:
-    image: maven:latest
+    image: maven:3.6.0-jdk-11
     stage: test
     script:
         - mvn test -PskipAngular
 
 java-lint:
-    image: maven:latest
+    image: maven:3.6.0-jdk-11
     stage: test
     script:
         - mvn pmd:check
 
 java-coverage:
-    image: maven:latest
-    stage: coverage
+    image: maven:3.6.0-jdk-11
+    stage: test
     script:
         - mvn jacoco:prepare-agent install jacoco:report -PskipAngular
 
 angular-build:
-    image: node:13-stretch
+    image: node:12-buster
     stage: build
     script:
         - cd ui/src/main/resources/frontend && npm install && ./node_modules/@angular/cli/bin/ng build
 
 angular-lint:
-    image: node:13-stretch
+    image: node:12-buster
     stage: test
     script:
         - cd ui/src/main/resources/frontend && npm install && ./node_modules/@angular/cli/bin/ng lint
 
 angular-tests:
-    image: circleci/node:13-browsers
+    image: circleci/node:12-browsers
     stage: test
     script:
         - cd ui/src/main/resources/frontend && npm install && ./node_modules/@angular/cli/bin/ng test
