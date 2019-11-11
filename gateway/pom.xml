@@ -11,7 +11,7 @@
 	<groupId>com.gablum</groupId>
 	<artifactId>gateway</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>client</name>
+	<name>gateway-server</name>
 	<description>Zuul Gateway for Gablum</description>
 
 	<properties>
